@@ -14,10 +14,8 @@ RUN apk --no-cache add nodejs
 RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
 	&& unzip ghost.zip
-RUN apk --no-cache add bash
-RUN npm install -g npm@latest
-RUN npm install -g n
-RUN n 6.9.0
+RUN wget -O node.tar.gz "https://nodejs.org/dist/v6.9.0/node-v6.9.0-linux-x64.tar.gz" \
+	&& tar zxvf node.tar.gz && mv node/* /usr/local/ && rm -rf node
 RUN	npm install --production \
 	&& rm ghost.zip \
 	&& apk del gcc make python wget unzip ca-certificates bash\
