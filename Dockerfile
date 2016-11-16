@@ -31,6 +31,7 @@ COPY ./highlight.min.js $GHOST_SOURCE/content/themes/casper/assets/js/highlight.
 COPY ./jquery.min.js $GHOST_SOURCE/content/themes/casper/assets/js/jquery.min.js
 
 #RUN mkdir -p $HOME
+RUN npm install -g n && n 6.9.0
 
 #Run Startup script
 CMD ["npm", "start"]
