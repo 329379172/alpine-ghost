@@ -1,7 +1,5 @@
 FROM alpine:3.4 
 
-RUN apk add --no-cache nodejs
-
 MAINTAINER linfeiyang <329379172@qq.com>
 
 ENV GHOST_SOURCE /usr/src/app
