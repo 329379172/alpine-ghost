@@ -9,7 +9,7 @@ ENV GHOST_VERSION 0.11.3
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
 
-RUN apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/v3.3/main/ add nodejs --allow-untrusted
+RUN apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/v3.3/main/ add nodejs=4.3.0-r0 --allow-untrusted
 
 RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
