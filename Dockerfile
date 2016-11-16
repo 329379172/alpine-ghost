@@ -15,7 +15,8 @@ RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
 	&& unzip ghost.zip
 RUN npm install -g npm@latest
-RUN npm install -g n && n 6.9.0
+RUN npm install -g n
+RUN n 6.9.0
 RUN	npm install --production \
 	&& rm ghost.zip \
 	&& apk del gcc make python wget unzip ca-certificates \
