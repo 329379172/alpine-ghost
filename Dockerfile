@@ -1,4 +1,4 @@
-FROM alpine:3.3 
+FROM alpine:3.4 
 
 MAINTAINER linfeiyang <329379172@qq.com>
 
@@ -9,7 +9,7 @@ ENV GHOST_VERSION 0.11.3
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
 
-RUN apk --no-cache add nodejs
+RUN apk --no-cache add nodejs=4.3.0-r0
 
 RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
