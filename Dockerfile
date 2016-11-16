@@ -15,6 +15,7 @@ RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
 	&& unzip ghost.zip
 RUN npm install -g npm@latest
+RUN npm install -g n && n 6.9.0
 RUN	npm install --production \
 	&& rm ghost.zip \
 	&& apk del gcc make python wget unzip ca-certificates \
@@ -31,7 +32,6 @@ COPY ./highlight.min.js $GHOST_SOURCE/content/themes/casper/assets/js/highlight.
 COPY ./jquery.min.js $GHOST_SOURCE/content/themes/casper/assets/js/jquery.min.js
 
 #RUN mkdir -p $HOME
-RUN npm install -g n && n 6.9.0
 
 #Run Startup script
 CMD ["npm", "start"]
