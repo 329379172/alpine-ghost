@@ -4,7 +4,7 @@ MAINTAINER linfeiyang <329379172@qq.com>
 
 ENV GHOST_SOURCE /usr/src/app
 
-ENV GHOST_VERSION 0.11.3
+ENV GHOST_VERSION 0.7.6
 
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
