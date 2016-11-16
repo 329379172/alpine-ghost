@@ -9,6 +9,8 @@ ENV GHOST_VERSION 0.11.3
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
 
+RUN apk --no-cache add nodejs
+
 RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
 	&& unzip ghost.zip
@@ -34,4 +36,4 @@ COPY ./jquery.min.js $GHOST_SOURCE/content/themes/casper/assets/js/jquery.min.js
 #RUN mkdir -p $HOME
 
 #Run Startup script
-CMD ["npm", "start"]
+CMD ["/usr/local/bin/node", "index.js"]
