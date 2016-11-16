@@ -1,4 +1,4 @@
-FROM alpine:3.4 
+FROM alpine:3.3 
 
 MAINTAINER linfeiyang <329379172@qq.com>
 
@@ -13,10 +13,7 @@ RUN apk --no-cache add nodejs
 
 RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
 	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
-	&& unzip ghost.zip
-RUN wget -O node.tar.gz "https://nodejs.org/dist/v6.9.0/node-v6.9.0-linux-x64.tar.gz" \
-	&& tar zxvf node.tar.gz && mv node-v6.9.0-linux-x64/* /usr/local/ && rm -rf node
-RUN	npm install --production \
+	&& unzip ghost.zip && npm install -g npm@latest && npm install --production \
 	&& rm ghost.zip \
 	&& apk del gcc make python wget unzip ca-certificates bash\
 	&& npm cache clean \
@@ -34,4 +31,4 @@ COPY ./jquery.min.js $GHOST_SOURCE/content/themes/casper/assets/js/jquery.min.js
 #RUN mkdir -p $HOME
 
 #Run Startup script
-CMD ["/usr/local/bin/node", "index.js"]
+CMD ["npm", "start"]
