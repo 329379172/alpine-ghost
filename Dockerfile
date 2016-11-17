@@ -1,26 +1,28 @@
-FROM index.alauda.cn/linfeiyang/apline-perl
+FROM centos:7
 
-RUN apk add --no-cache nodejs
+RUN yum install epel-release -y 
+
+RUN yum install nodejs  -y
+
+RUN npm -v
 
 MAINTAINER linfeiyang <329379172@qq.com>
 
 #ENV VARIABLES
 ENV GHOST_SOURCE /usr/src/app
 #ENV GHOST_CONTENT /var/lib/ghost
-ENV GHOST_VERSION 0.11.0
+ENV GHOST_VERSION 0.11.3
 
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
 
-RUN apk --no-cache add tar gcc make python wget unzip ca-certificates \
-	&& wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip" \
-	&& unzip ghost.zip \
-	&& npm install -g npm@latest \
-    && npm install --production \
-	&& rm ghost.zip \
-	&& apk del gcc make python wget unzip ca-certificates \
-	&& npm cache clean \
-	&& rm -rf /tmp/npm*
+RUN yum install gcc make python wget unzip -y && wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip"
+
+RUN unzip ghost.zip 
+RUN npm install --production && rm ghost.zip 
+
+RUN yum remove gcc make pythong wget unzip -y
+
 
 #Copy over our configuration filename
 COPY ./config.js $GHOST_SOURCE
