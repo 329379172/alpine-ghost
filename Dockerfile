@@ -16,7 +16,7 @@ ENV GHOST_VERSION 0.11.3
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
 
-RUN yum install gcc make python wget unzip -y && wget -O ghost.zip "https://ghost.org/archives/ghost-${GHOST_VERSION}.zip"
+RUN yum install gcc make python wget unzip -y && wget -O ghost.zip "https://github.com/TryGhost/Ghost/releases/download/${GHOST_VERSION}/Ghost-${GHOST_VERSION}.zip"
 
 RUN unzip ghost.zip 
 RUN npm install --production && rm ghost.zip 
