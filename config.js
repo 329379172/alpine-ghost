@@ -13,13 +13,15 @@ function CheckEnvVar(varname, defaultvalue)
 var devDomain = CheckEnvVar('DEV_DOMAIN', 'http://localhost:2368');
 var prodDomain = CheckEnvVar('PROD_DOMAIN', 'http://fastqiu.com');
 
+var dbhost = process.env['DB_HOST'];
+
 config = {
     production: {
         url: 'http://fastqiu.com',
         database: {
             client: 'mysql',
             connection: {
-                host     : 'mysql',
+                host     : dbhost,
                 user     : 'root',
                 password : '123456',
                 database : 'ghost',
